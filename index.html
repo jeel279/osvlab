@@ -14,8 +14,18 @@ Track : <input type="text" value="176 79 34 60 92 11 41 114" id="track">
 <button id="calc">Calculate</button>
 <br><br>
 <span id="res"></span>
-<canvas id="myChart" style="width: 150px !important;height: 250px !important;"></canvas>
+<style>
+
+    .chart-container {
+        width: 1000px;
+        height:600px
+    }
+</style>
+<div class="chart-container" style="position: relative; height:40vh; width:80vw">
+    <canvas id="myChart"></canvas>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
     document.getElementById('calc').addEventListener('click',function (){
         var track = document.getElementById('track').value.split(' ');
