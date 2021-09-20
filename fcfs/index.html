@@ -1,0 +1,193 @@
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:300,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="../css/input.css"/>
+    <link rel="stylesheet" href="../css/tabs.css"/>
+    <!-- Fonts to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <!-- Icons to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <title>Hello</title>
+    <style>
+        .ctr{
+        text-align: center;
+        }
+
+        .clr{
+            color: #345F90;
+        }
+
+        .chart-container {
+            width: 1000px;
+            height:600px
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h2>FCFS - First Come First Served</h2>
+    <div class="tab-slider--nav">
+        <ul class="tab-slider--tabs">
+            <div class="ctr">
+                <li class="tab-slider--trigger active" rel="tab1"><center> Introduction</center></li>
+                <li class="tab-slider--trigger" rel="tab2"><center>Implementation</center></li>
+            </div>
+        </ul>
+    </div>
+    <div class="tab-slider--container">
+        <div id="tab1" class="tab-slider--body">
+            <p>FCFS is the simplest disk scheduling algorithm. As the name suggests, this algorithm entertains requests in the order they arrive in the disk queue. The algorithm looks very fair and there is no starvation (all requests are serviced sequentially) but generally, it does not provide the fastest service.</p>
+            <h3 class="clr">Advantages:</h3>
+            <p>-In FCFS disk scheduling, there is no indefinite delay.</p>
+            <p>-There is no starvation in FCFS disk scheduling because each request gets a fair chance.</p>
+            <h3 class="clr">Disadvantages:</h3>
+            <p>-FCFS scheduling is not offered as the best service.</p>
+            <p>-In FCFS, scheduling disk time is not optimized.</p>
+        </div>
+        <div id="tab2" class="tab-slider--body">
+
+            <div class="form-group">
+                <span><b>Head</b></span>
+                <input class="form-field" type="text"  value="50" id="head">
+            </div>
+            <br>
+            <div class="form-group">
+                <span><b>Track</b></span>
+                <input class="form-field" type="text"  value="176 79 34 60 92 11 41 114" id="track">
+            </div>
+            <br>
+            <center><button class="button-18" role="button" id="calc">Calculate</button></center>
+            <br><br>
+            <span id="res"></span>
+            <br>
+            <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script>
+    $("document").ready(function () {
+        $(".tab-slider--body").hide();
+        $(".tab-slider--body:first").show();
+    });
+
+    $(".tab-slider--nav li").click(function () {
+        $(".tab-slider--body").hide();
+        var activeTab = $(this).attr("rel");
+        $("#" + activeTab).fadeIn();
+        if ($(this).attr("rel") == "tab2") {
+            $('.tab-slider--tabs').addClass('slide');
+        } else {
+            $('.tab-slider--tabs').removeClass('slide');
+        }
+        $(".tab-slider--nav li").removeClass("active");
+        $(this).addClass("active");
+    });
+    //# sourceURL=pen.js
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/MotionPathPlugin.min.js'></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.getElementById('calc').addEventListener('click',function (){
+        var track = document.getElementById('track').value.split(' ');
+        var head = document.getElementById('head').value;
+        var seek = 0;
+        for(var i=0;i<track.length;i++){
+            seek+=Math.abs(track[i]-head);
+            head = track[i];
+        }
+        head = document.getElementById('head').value;
+        var str = "<b class='clr'>Total number of seek operations: </b>"+seek+"<br>"+"<b class='clr'>Seek Sequence: </b>"+head+" ";
+        for(var k in track){
+            str+=track[k]+" ";
+        }
+        str+="<br>";
+        track.unshift(head);
+        document.getElementById('res').innerHTML = str;
+        var ctx = document.getElementById('myChart').getContext('2d');
+        const totalDuration = 10000;
+        const delayBetweenPoints = totalDuration / track.length;
+        const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+        const animation = {
+            x: {
+                type: 'number',
+                easing: 'linear',
+                duration: delayBetweenPoints,
+                from: NaN, // the point is initially skipped
+                delay(ctx) {
+                    if (ctx.type !== 'data' || ctx.xStarted) {
+                        return 0;
+                    }
+                    ctx.xStarted = true;
+                    return ctx.index * delayBetweenPoints;
+                }
+            },
+            y: {
+                type: 'number',
+                easing: 'linear',
+                duration: delayBetweenPoints,
+                from: previousY,
+                delay(ctx) {
+                    if (ctx.type !== 'data' || ctx.yStarted) {
+                        return 0;
+                    }
+                    ctx.yStarted = true;
+                    return ctx.index * delayBetweenPoints;
+                }
+            }
+        };
+        var tempL = Array();
+        for(var k=1;k<=track.length;k++) tempL.push(k);
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: tempL,
+                datasets: [{
+                    label: 'Position',
+                    data: track,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                animation,
+                interaction: {
+                    intersect: false
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        myChart.resize(250, 600);
+    });
+
+</script>
