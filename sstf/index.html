@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <!-- Icons to support Material Design -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <title>FCFS</title>
+    <title>SSTF</title>
     <style>
         .ctr{
         text-align: center;
@@ -29,7 +29,7 @@
 <body>
 <div class="container">
 
-    <h2>FCFS - First Come First Served</h2>
+    <h2>SSTF - Shortest Seek Time First</h2>
     <div class="tab-slider--nav">
         <ul class="tab-slider--tabs">
             <div class="ctr">
@@ -40,13 +40,13 @@
     </div>
     <div class="tab-slider--container">
         <div id="tab1" class="tab-slider--body">
-            <p>FCFS is the simplest disk scheduling algorithm. As the name suggests, this algorithm entertains requests in the order they arrive in the disk queue. The algorithm looks very fair and there is no starvation (all requests are serviced sequentially) but generally, it does not provide the fastest service.</p>
+            <p>Given an array of disk track numbers and initial head position, our task is to find the total number of seek operations done to access all the requested tracks if Shortest Seek Time First (SSTF) is a disk scheduling algorithm is used.Basic idea is the tracks which are closer to current disk head position should be serviced first in order to minimise the seek operations.</p>
             <h3 class="clr">Advantages:</h3>
-            <p>-In FCFS disk scheduling, there is no indefinite delay.</p>
-            <p>-There is no starvation in FCFS disk scheduling because each request gets a fair chance.</p>
+            <p>-Better performance than FCFS scheduling algorithm.</p>
+            <p>-It provides better throughput.</p>
             <h3 class="clr">Disadvantages:</h3>
-            <p>-FCFS scheduling is not offered as the best service.</p>
-            <p>-In FCFS, scheduling disk time is not optimized.</p>
+            <p>-Starvation is possible for some requests as it favours easy to reach request and ignores the far away processes.</p>
+            <p>-Their is lack of predictability because of high variance of response time.</p>
         </div>
         <div id="tab2" class="tab-slider--body">
 
@@ -98,4 +98,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="../js/fcfs.js"></script>
+<script src="../js/sstf.js">
+
+
+</script>

@@ -1,1 +1,93 @@
-<a href="fcfs">Go</a>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:300,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/input.css"/>
+    <link rel="stylesheet" href="css/tabs.css"/>
+    <!-- Fonts to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <!-- Icons to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <title>Disk Scheduling</title>
+    <style>
+        .ctr{
+            text-align: center;
+        }
+
+        .clr{
+            color: #345F90;
+        }
+
+        .chart-container {
+            width: 1000px;
+            height:600px
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h2>Disk Scheduling Algorithms</h2>
+    <div class="tab-slider--nav">
+        <ul class="tab-slider--tabs">
+            <div class="ctr">
+                <li class="tab-slider--trigger active" rel="tab1"><center> Introduction</center></li>
+                <li class="tab-slider--trigger" rel="tab2"><center>Algorithms</center></li>
+            </div>
+        </ul>
+    </div>
+    <div class="tab-slider--container">
+        <div id="tab1" class="tab-slider--body">
+
+        </div>
+        <div id="tab2" class="tab-slider--body">
+            <center>
+                <button class="button-18" role="button" onclick="location.assign('fcfs')">FCFS</button>
+                <br><br>
+                <button class="button-18" role="button" onclick="location.assign('sstf')">SSTF</button>
+                <br><br>
+                <button class="button-18" role="button" onclick="location.assign('scan')">SCAN</button>
+                <br><br>
+                <button class="button-18" role="button" onclick="location.assign('cscan')">CSCAN</button>
+                <br><br>
+                <button class="button-18" role="button" onclick="location.assign('look')">LOOK</button>
+                <br><br>
+                <button class="button-18" role="button" onclick="location.assign('clook')">CLOOK</button>
+            </center>
+
+        </div>
+    </div>
+</div>
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script>
+    $("document").ready(function () {
+        $(".tab-slider--body").hide();
+        $(".tab-slider--body:first").show();
+    });
+
+    $(".tab-slider--nav li").click(function () {
+        $(".tab-slider--body").hide();
+        var activeTab = $(this).attr("rel");
+        $("#" + activeTab).fadeIn();
+        if ($(this).attr("rel") == "tab2") {
+            $('.tab-slider--tabs').addClass('slide');
+        } else {
+            $('.tab-slider--tabs').removeClass('slide');
+        }
+        $(".tab-slider--nav li").removeClass("active");
+        $(this).addClass("active");
+    });
+    //# sourceURL=pen.js
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/MotionPathPlugin.min.js'></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+</script>

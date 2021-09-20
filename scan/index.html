@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <!-- Icons to support Material Design -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <title>FCFS</title>
+    <title>SCAN</title>
     <style>
         .ctr{
         text-align: center;
@@ -29,7 +29,7 @@
 <body>
 <div class="container">
 
-    <h2>FCFS - First Come First Served</h2>
+    <h2>SCAN - Elevator</h2>
     <div class="tab-slider--nav">
         <ul class="tab-slider--tabs">
             <div class="ctr">
@@ -40,13 +40,13 @@
     </div>
     <div class="tab-slider--container">
         <div id="tab1" class="tab-slider--body">
-            <p>FCFS is the simplest disk scheduling algorithm. As the name suggests, this algorithm entertains requests in the order they arrive in the disk queue. The algorithm looks very fair and there is no starvation (all requests are serviced sequentially) but generally, it does not provide the fastest service.</p>
+            <p> In SCAN disk scheduling algorithm, head starts from one end of the disk and moves towards the other end, servicing rests in between one by one and reach the other end. Then the direction of the head is reversed and the process continues as head continuously scan back and forth to access the disk. So, this algorithm works as an elevator and hence also known as the elevator algorithm. As a result, the requests at the midrange are serviced more and those arriving behind the disk arm will have to wait.</p>
             <h3 class="clr">Advantages:</h3>
-            <p>-In FCFS disk scheduling, there is no indefinite delay.</p>
-            <p>-There is no starvation in FCFS disk scheduling because each request gets a fair chance.</p>
+            <p>-This algorithm is simple and easy to understand.</p>
+            <p>-SCAN algorithm have no starvation.</p>
             <h3 class="clr">Disadvantages:</h3>
-            <p>-FCFS scheduling is not offered as the best service.</p>
-            <p>-In FCFS, scheduling disk time is not optimized.</p>
+            <p>-More complex algorithm to implement.</p>
+            <p>-This algorithm is not fair because it cause long waiting time for the cylinders just visited by the head.</p>
         </div>
         <div id="tab2" class="tab-slider--body">
 
@@ -59,6 +59,19 @@
                 <span><b>Track</b></span>
                 <input class="form-field" type="text"  value="176 79 34 60 92 11 41 114" id="track">
             </div>
+            <br>
+            <div class="form-group">
+                <span><b>Disk Size</b></span>
+                <input class="form-field" type="text"  value="200" id="disk_size">
+            </div>
+            <br>
+            <center>
+                <span><b style="color:#345F90">Direction : </b></span>
+                <input type="radio" name="direction" id="l" value="left" checked>
+                <label for="l" style="margin-right: 8px">Down</label>
+                <input type="radio" name="direction" id='r' value="right" style="margin-left: 8px">
+                <label for="r">Up</label>
+            </center>
             <br>
             <center><button class="button-18" role="button" id="calc">Calculate</button></center>
             <br><br>
@@ -98,4 +111,4 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="../js/fcfs.js"></script>
+<script src="../js/scan.js"></script>
