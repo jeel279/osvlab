@@ -45,7 +45,10 @@ document.getElementById('calc').addEventListener('click',function (){
         tmp.sort(function (a,b){
             return a-b;
         });
-
+        if(tmp[tmp.length-1]>=size){
+            error();
+            return;
+        }
         var start = tmp.indexOf(head);
 
         for(var i=start;i<tmp.length-1;i++){
