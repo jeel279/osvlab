@@ -57,7 +57,7 @@ document.getElementById('calc').addEventListener('click',function (){
             otrack.push(tmp[i-1]);
         }
     }
-    var str="<b style=\"color:#345F90\">Total number of seek operations: </b>"+otrack.join(" ")+"<br>"+"<b style=\"color:#345F90\">Seek Sequence: </b>"+seek;
+    var str="<b style=\"color:#345F90\">Seek Sequence: </b>"+otrack.join(" ")+"<br>"+"<b style=\"color:#345F90\">Total number of seek operations: </b>"+seek;
 
     document.getElementById('res').innerHTML = str;
     document.getElementById('myChart').innerHTML = "";
