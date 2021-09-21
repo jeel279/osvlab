@@ -10,11 +10,11 @@ document.getElementById('calc').addEventListener('click',function (){
         head = track[i];
     }
     head = document.getElementById('head').value;
-    var str = "<b class='clr'>Total number of seek operations: </b>"+seek+"<br>"+"<b class='clr'>Seek Sequence: </b>"+head+" ";
+    var str = "<b class='clr'>Seek Sequence: </b>"+head+" ";
     for(var k in track){
         str+=track[k]+" ";
     }
-    str+="<br>";
+    str+="<br><b class='clr'>Total number of seek operations: </b>"+seek+"<br>";
     track.unshift(head);
     document.getElementById('res').innerHTML = str;
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -50,7 +50,7 @@ document.getElementById('calc').addEventListener('click',function (){
         }
     };
     var tempL = Array();
-    for(var k=1;k<=track.length;k++) tempL.push(k);
+    for(var k=0;k<track.length;k++) tempL.push(k);
     myChart = new Chart(ctx, {
         type: 'line',
         data: {

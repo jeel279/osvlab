@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <!-- Icons to support Material Design -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <title>SCAN</title>
+    <title>CSCAN</title>
     <style>
         .ctr{
         text-align: center;
@@ -24,53 +24,12 @@
             width: 1000px;
             height:600px
         }
-        #snackbar {
-            visibility: hidden;
-            min-width: 250px;
-            margin-left: -125px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 2px;
-            padding: 16px;
-            position: fixed;
-            z-index: 1;
-            left: 50%;
-            bottom: 30px;
-            font-size: 17px;
-        }
-
-        #snackbar.show {
-            visibility: visible;
-            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-
-        @-webkit-keyframes fadein {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
-        }
-
-        @keyframes fadein {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
-        }
-
-        @-webkit-keyframes fadeout {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
-        }
-
-        @keyframes fadeout {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
-        }
     </style>
 </head>
 <body>
 <div class="container">
 
-    <h2>SCAN - Elevator</h2>
+    <h2>CSCAN - Circular Elevator</h2>
     <div class="tab-slider--nav">
         <ul class="tab-slider--tabs">
             <div class="ctr">
@@ -81,13 +40,13 @@
     </div>
     <div class="tab-slider--container">
         <div id="tab1" class="tab-slider--body">
-            <p> In SCAN disk scheduling algorithm, head starts from one end of the disk and moves towards the other end, servicing rests in between one by one and reach the other end. Then the direction of the head is reversed and the process continues as head continuously scan back and forth to access the disk. So, this algorithm works as an elevator and hence also known as the elevator algorithm. As a result, the requests at the midrange are serviced more and those arriving behind the disk arm will have to wait.</p>
+            <p>Circular SCAN (C-SCAN) scheduling algorithm is a modified version of SCAN disk scheduling algorithm that deals with the inefficiency of SCAN algorithm by servicing the requests more uniformly. Like SCAN (Elevator Algorithm) C-SCAN moves the head from one end servicing all the requests to the other end. However, as soon as the head reaches the other end, it immediately returns to the beginning of the disk without servicing any requests on the return trip (see chart below) and starts servicing again once reaches the beginning. This is also known as the “Circular Elevator Algorithm” as it essentially treats the cylinders as a circular list that wraps around from the final cylinder to the first one.</p>
             <h3 class="clr">Advantages:</h3>
-            <p>-This algorithm is simple and easy to understand.</p>
-            <p>-SCAN algorithm have no starvation.</p>
+            <p>-C-SCAN Algorithm is the successor and the improved version of the SCAN scheduling Algorithm.</p>
+            <p>-The Head move from one end to the other of the disk while serving all the requests in between.</p>
             <h3 class="clr">Disadvantages:</h3>
-            <p>-More complex algorithm to implement.</p>
-            <p>-This algorithm is not fair because it cause long waiting time for the cylinders just visited by the head.</p>
+            <p>-More seek movements are caused in C-SCAN compared to SCAN Algorithm.</p>
+            <p>-In C-SCAN even if there are no requests left to be serviced the Head will still travel to the end of the disk unlike SCAN algorithm.</p>
         </div>
         <div id="tab2" class="tab-slider--body">
 
@@ -124,8 +83,6 @@
         </div>
     </div>
 </div>
-<div id="snackbar"><img src="https://c.tenor.com/56aoJju8qi8AAAAC/mirzapur-telugu.gif"></div>
-
 </body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 <script>
@@ -154,4 +111,4 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="../js/scan.js"></script>
+<script src="../js/cscan.js"></script>

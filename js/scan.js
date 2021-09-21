@@ -1,5 +1,9 @@
 var myChart;
-
+function error() {
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
 document.getElementById('calc').addEventListener('click',function (){
     if(myChart!=undefined) myChart.destroy();
     var head = parseInt(document.getElementById('head').value);
@@ -18,7 +22,10 @@ document.getElementById('calc').addEventListener('click',function (){
         tmp.sort(function (a,b){
             return a-b;
         });
-
+        if(tmp[tmp.length-1]>=size){
+            error();
+            return;
+        }
 
         var start = tmp.indexOf(head);
 
@@ -89,7 +96,7 @@ document.getElementById('calc').addEventListener('click',function (){
         }
     };
     var tempL = Array();
-    for(var k=1;k<=tmp.length;k++) tempL.push(k);
+    for(var k=0;k<tmp.length;k++) tempL.push(k);
     myChart = new Chart(ctx, {
         type: 'line',
         data: {

@@ -4,33 +4,50 @@ document.getElementById('calc').addEventListener('click',function (){
     if(myChart!=undefined) myChart.destroy();
     var head = parseInt(document.getElementById('head').value);
     var track = document.getElementById('track').value.split(' ');
-    track.push(head);
-    var tracktmp = Array();
+    var dir = (document.querySelector( 'input[name="direction"]:checked').value=="left") ? true : false;
+    var tmp = Array();
     for(var i=0;i<track.length;i++){
-        tracktmp.push(parseInt(track[i]));
+        tmp.push(parseInt(track[i]));
     }
-    tracktmp.sort(function(a,b){
-        return a-b;
-    });
-    var k=track.length;
-    var seek=0;
+    tmp.push(head);
     var otrack = Array();
-    for(var i=0;i<k;i++){
-        var start = tracktmp.indexOf(head);
-        otrack.push(head);
-        if(start==0) head = tracktmp[start+1];
-        else if(start==tracktmp.length-1) head = tracktmp[start-1];
-        else{
-            var r = Math.abs(tracktmp[start]-tracktmp[start+1]);
-            var l = Math.abs(tracktmp[start]-tracktmp[start-1]);
-            if(r>=l){
-                head = tracktmp[start-1];
-            }else{
-                head = tracktmp[start+1];
-            }
+    var seek=0;
+    if(dir){
+        tmp.sort(function (a,b){
+            return a-b;
+        });
+
+        var start = tmp.indexOf(head);
+
+        for(var i=start;i>0;i--){
+            seek+=tmp[i] - tmp[i-1];
+            otrack.push(tmp[i]);
         }
-        if(i<k-1) seek+=Math.abs(head-tracktmp[start]);
-        tracktmp.splice(start,1);
+        tmp[start]=tmp[0];
+        otrack.push(tmp[0]);
+        for(var i=start;i<tmp.length-1;i++){
+            seek+=tmp[i+1]-tmp[i];
+            otrack.push(tmp[i+1]);
+        }
+
+    }else{
+
+        tmp.sort(function (a,b){
+            return a-b;
+        });
+
+        var start = tmp.indexOf(head);
+
+        for(var i=start;i<tmp.length-1;i++){
+            seek+=tmp[i+1]-tmp[i];
+            otrack.push(tmp[i]);
+        }
+        tmp[start]=tmp[tmp.length-1];
+        otrack.push(tmp[start]);
+        for(var i=start;i>0;i--){
+            seek+=tmp[i] - tmp[i-1];
+            otrack.push(tmp[i-1]);
+        }
     }
     var str="<b style=\"color:#345F90\">Seek Sequence: </b>"+otrack.join(" ")+"<br>"+"<b style=\"color:#345F90\">Total number of seek operations: </b>"+seek;
 
@@ -69,7 +86,7 @@ document.getElementById('calc').addEventListener('click',function (){
         }
     };
     var tempL = Array();
-    for(var k=0;k<track.length;k++) tempL.push(k);
+    for(var k=0;k<tmp.length;k++) tempL.push(k);
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -90,7 +107,7 @@ document.getElementById('calc').addEventListener('click',function (){
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
+                    'rgba(153, 102, 2515, 1)',
                     'rgba(255, 159, 64, 1)'
                 ],
                 borderWidth: 1
@@ -110,5 +127,3 @@ document.getElementById('calc').addEventListener('click',function (){
     });
     myChart.resize(250, 600);
 });
-
-

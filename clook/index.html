@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <!-- Icons to support Material Design -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <title>SCAN</title>
+    <title>CLOOK</title>
     <style>
         .ctr{
         text-align: center;
@@ -24,53 +24,12 @@
             width: 1000px;
             height:600px
         }
-        #snackbar {
-            visibility: hidden;
-            min-width: 250px;
-            margin-left: -125px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 2px;
-            padding: 16px;
-            position: fixed;
-            z-index: 1;
-            left: 50%;
-            bottom: 30px;
-            font-size: 17px;
-        }
-
-        #snackbar.show {
-            visibility: visible;
-            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-
-        @-webkit-keyframes fadein {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
-        }
-
-        @keyframes fadein {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
-        }
-
-        @-webkit-keyframes fadeout {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
-        }
-
-        @keyframes fadeout {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
-        }
     </style>
 </head>
 <body>
 <div class="container">
 
-    <h2>SCAN - Elevator</h2>
+    <h2>CLOOK - Circular Look</h2>
     <div class="tab-slider--nav">
         <ul class="tab-slider--tabs">
             <div class="ctr">
@@ -81,13 +40,12 @@
     </div>
     <div class="tab-slider--container">
         <div id="tab1" class="tab-slider--body">
-            <p> In SCAN disk scheduling algorithm, head starts from one end of the disk and moves towards the other end, servicing rests in between one by one and reach the other end. Then the direction of the head is reversed and the process continues as head continuously scan back and forth to access the disk. So, this algorithm works as an elevator and hence also known as the elevator algorithm. As a result, the requests at the midrange are serviced more and those arriving behind the disk arm will have to wait.</p>
+            <p>C-LOOK is an enhanced version of both SCAN as well as LOOK disk scheduling algorithms. This algorithm also uses the idea of wrapping the tracks as a circular cylinder as C-SCAN algorithm but the seek time is better than C-SCAN algorithm. We know that C-SCAN is used to avoid starvation and services all the requests more uniformly, the same goes for C-LOOK. In this algorithm, the head services requests only in one direction(either left or right) until all the requests in this direction are not serviced and then jumps back to the farthest request on the other direction and service the remaining requests which gives a better uniform servicing as well as avoids wasting seek time for going till the end of the disk.</p>
             <h3 class="clr">Advantages:</h3>
-            <p>-This algorithm is simple and easy to understand.</p>
-            <p>-SCAN algorithm have no starvation.</p>
+            <p>-In C-LOOK the head does not have to move till the end of the disk if there are no requests to be serviced.</p>
+            <p>-There is less waiting time for the cylinders which are just visited by the head in C-LOOK.</p>
             <h3 class="clr">Disadvantages:</h3>
-            <p>-More complex algorithm to implement.</p>
-            <p>-This algorithm is not fair because it cause long waiting time for the cylinders just visited by the head.</p>
+            <p>-In C-LOOK an overhead of finding the end requests is present.
         </div>
         <div id="tab2" class="tab-slider--body">
 
@@ -99,11 +57,6 @@
             <div class="form-group">
                 <span><b>Track</b></span>
                 <input class="form-field" type="text"  value="176 79 34 60 92 11 41 114" id="track">
-            </div>
-            <br>
-            <div class="form-group">
-                <span><b>Disk Size</b></span>
-                <input class="form-field" type="text"  value="200" id="disk_size">
             </div>
             <br>
             <center>
@@ -124,8 +77,6 @@
         </div>
     </div>
 </div>
-<div id="snackbar"><img src="https://c.tenor.com/56aoJju8qi8AAAAC/mirzapur-telugu.gif"></div>
-
 </body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 <script>
@@ -154,4 +105,4 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="../js/scan.js"></script>
+<script src="../js/clook.js"></script>
