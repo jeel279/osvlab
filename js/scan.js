@@ -1,9 +1,4 @@
 var myChart;
-function error() {
-    var x = document.getElementById("snackbar");
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
 document.getElementById('calc').addEventListener('click',function (){
     if(myChart!=undefined) myChart.destroy();
     var head = parseInt(document.getElementById('head').value);

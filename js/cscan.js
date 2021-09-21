@@ -16,6 +16,10 @@ tmp.sort((a,b)=>{
     return a-b;
 });
 
+    if(tmp[tmp.length-1]>=size){
+        error();
+        return;
+    }
 if(tmp[tmp.length-1]!=size-1) tmp.push(size-1);
 if(tmp[0]!=0) tmp.unshift(0);
 

@@ -16,7 +16,6 @@ document.getElementById('calc').addEventListener('click',function (){
         tmp.sort(function (a,b){
             return a-b;
         });
-
         var start = tmp.indexOf(head);
 
         for(var i=start;i>0;i--){
@@ -35,7 +34,6 @@ document.getElementById('calc').addEventListener('click',function (){
         tmp.sort(function (a,b){
             return a-b;
         });
-
         var start = tmp.indexOf(head);
 
         for(var i=start;i<tmp.length-1;i++){
