@@ -18,7 +18,6 @@
             color: #fff;
             font-family: "Roboto slab", sans-serif;
             text-align: center;
-            position: fixed;
             left: 0;
             bottom: 0;
             height: 22%;
@@ -36,6 +35,185 @@
         .chart-container {
             width: 1000px;
             height:600px
+        }
+        @import url('https://fonts.googleapis.com/css?family=Roboto');
+        .bouton{
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #fff;
+            border-radius: 100px;
+            border: 0px;
+            background-image: linear-gradient(60deg,#3498db, #7c4891);
+            height: 50px;
+            width: 150px;
+            transition: box-shadow 0.1s linear;
+        }
+        .bouton:hover{
+            transition: box-shadow 0.1s linear;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #fff;
+            border-radius: 100px;
+            border: 0px;
+            background-image: linear-gradient(60deg,#3498db, #7c4891);
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            cursor: pointer;
+        }
+        .bouton:active{
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #fff;
+            border-radius: 100px;
+            border: 0px;
+            background-image: linear-gradient(60deg,#3498db, #7c4891);
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            height: 45px;
+            width: 145px;
+        }
+        .fab{
+            display: none;
+            position: fixed;
+            z-index: 999;
+            bottom: 8vh;
+            right: 4vh;
+        }
+
+
+        .modal-open:before, .modal-open:after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            height: 2px;
+            transition: width 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .modal-open:before {
+            width: 100%;
+            background-color: #212121;
+        }
+        .modal-open:after {
+            width: 0;
+            background-color: #212121;
+        }
+        .modal-open:hover:after {
+            width: calc(100% + 1px);
+        }
+
+        .modal-box {
+            position: absolute;
+            overflow: hidden;
+            width: 0;
+            height: 2px;
+            color: #fff;
+            z-index: 4;
+            background-color: #212121;
+            transition: width 400ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), left 400ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), height 400ms 0ms cubic-bezier(0.165, 0.84, 0.44, 1), top 400ms 0ms cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .modal-box.is-open {
+            transition: width 400ms 0ms cubic-bezier(0.165, 0.84, 0.44, 1), left 400ms 0ms cubic-bezier(0.165, 0.84, 0.44, 1), height 400ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), top 400ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .modal-box.is-open li {
+            opacity: 1;
+        }
+        .modal-box.is-open .modal-close {
+            opacity: 1;
+            transition: all 500ms 700ms;
+        }
+        .modal-box ul {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            margin: 0;
+            padding: 2px;
+            list-style-type: none;
+            transform: translate(-50%, -50%);
+        }
+        .modal-box li {
+            position: relative;
+            margin: 20px 0;
+            text-align: center;
+            opacity: 0;
+            transition: all 200ms;
+            font-size: 2.5vh;
+            font-family: "Roboto Slab", serif;
+        }
+        .modal-box a {
+            position: relative;
+            font-weight: 300;
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .modal-box a:before, .modal-box a:after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            height: 2px;
+            transition: width 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .modal-box a:after {
+            width: 0;
+            background-color: #fff;
+        }
+        .modal-box a:hover:after {
+            width: 100%;
+        }
+        .modal-box.is-open li:nth-child(1) {
+            transition: all 500ms 575ms;
+        }
+        .modal-box.is-open li:nth-child(2) {
+            transition: all 500ms 650ms;
+        }
+        .modal-box.is-open li:nth-child(3) {
+            transition: all 500ms 725ms;
+        }
+        .modal-box.is-open li:nth-child(4) {
+            transition: all 500ms 800ms;
+        }
+        .modal-box.is-open li:nth-child(5) {
+            transition: all 500ms 875ms;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 15px;
+            height: 15px;
+            padding: 0;
+            border: 0;
+            outline: none;
+            opacity: 0;
+            background-color: transparent;
+            transform: rotate(-45deg);
+        }
+        .modal-close:before, .modal-close:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 15px;
+            height: 3px;
+            background-color: #fff;
+            transform: translate(-50%, -50%);
+        }
+        .modal-close:after {
+            width: 3px;
+            height: 15px;
+        }
+
+        .visuallyhidden {
+            position: absolute;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            border: 0;
         }
     </style>
 </head>
@@ -57,14 +235,21 @@
             <h3 class="clr">Important terms:</h3>
             <h4><b>Seek Time: </b></h4><p>Seek time is the time taken to locate the disk arm to a specified track where the data is to be read or write. So the disk scheduling algorithm that gives minimum average seek time is better.</p>
             <h4><b>Seek Sequence: </b></h4><p>A specified track where the data is to be read or write.</p>
+            <br>
+            <center>
+                <button class="modal-open button-18" style="background-color: #09223b">Our Team</button>
+            </center>
         </div>
         <div id="tab2" class="tab-slider--body">
             <center>
-                <button class="button-18" role="button" onclick="location.assign('fcfs')">FCFS</button>
+            <br><br>
+                            <button class="button-18" role="button" onclick="location.assign('fcfs')">FCFS</button>
                 <br><br>
-                <button class="button-18" role="button" onclick="location.assign('sstf')">SSTF</button>
+                            <button class="button-18" role="button" onclick="location.assign('sstf')">SSTF</button>
                 <br><br>
-                <button class="button-18" role="button" onclick="location.assign('scan')">SCAN</button>
+                            <button class="button-18" role="button" onclick="location.assign('scan')">SCAN</button>
+
+
                 <br><br>
                 <button class="button-18" role="button" onclick="location.assign('cscan')">CSCAN</button>
                 <br><br>
@@ -76,14 +261,27 @@
         </div>
     </div>
 </div>
-
-<footer>
-    <div class="bottom">
-        <h3> Our Team</h3><h3>  </h3>
-        <h4>Jash Dalal - 19BIT047   |   Jeel Vachhani - 19BIT053</h4>
-        <h4>Harshil Patel - 19BIT043   |   Kushal Gajjar - 19BIT070</h4>
+<div class="fab">
+    <button onclick="location.assign('compare')" class="bouton">Compare</button>
+</div>
+    <div class="modal-box">
+    <div class="modal-box-content">
+        <br>
+        <center><h2 style="color: white">Team</h2></center>
+        <ul>
+            <li>Jash Dalal  19BIT047</li>
+            <li>Harshil Patel  19BIT043</li>
+            <li>Jeel Vachhani  19BIT053</li>
+            <li>Kushal Gajjar  19BIT070</li>
+        </ul>
     </div>
-</footer>
+    <button class="modal-close"><span class="visuallyhidden">Close modal box</span></button>
+</div>
+<!--footer>
+    <div class="bottom">
+
+    </div>
+</footer-->
 </body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 <script>
@@ -103,8 +301,49 @@
         }
         $(".tab-slider--nav li").removeClass("active");
         $(this).addClass("active");
+        if($(this).attr("rel")==="tab2")
+            $(".fab").show();
+        else
+            $(".fab").hide();
     });
-    //# sourceURL=pen.js
+    var $trigger = $('.modal-open');
+    var $close = $('.modal-close');
+    var $modal = $('.modal-box');
+
+    $(window).on('resize', function() {
+        var top = $trigger.offset().top + $trigger.outerHeight();
+        var left = $trigger.offset().left;
+        var width = $trigger.outerWidth();
+        $trigger.attr({
+            'data-top': top,
+            'data-left': left,
+            'data-width': width
+        });
+        $modal.css({
+            top: top,
+            left: left
+        });
+    }).trigger('resize');
+
+    $trigger.on('click', function() {
+        $modal.css({
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%'
+        }).addClass('is-open');
+    });
+
+    $close.on('click', function() {
+        var top = $trigger.offset().top + $trigger.outerHeight();
+        var left = $trigger.offset().left;
+        $modal.css({
+            top: top,
+            left: left,
+            width: 0,
+            height: '2px'
+        }).removeClass('is-open');
+    });
 </script>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js'></script>

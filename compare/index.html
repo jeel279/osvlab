@@ -1,0 +1,239 @@
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:300,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="../css/input.css"/>
+    <link rel="stylesheet" href="../css/tabs.css"/>
+    <!-- Fonts to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <!-- Icons to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <title>Compare</title>
+    <style>
+        .ctr{
+            text-align: center;
+        }
+
+        .clr{
+            color: #345F90;
+        }
+
+        .chart-container {
+            width: 1000px;
+            height:600px
+        }
+        #snackbar {
+            visibility: hidden;
+            width: 80%;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            position: fixed;
+            z-index: 1;
+            margin-right: 8%;
+            margin-left: 8%;
+            bottom: 30px;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @-webkit-keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+        #res {
+            justify-content: center;
+        }
+        .tm{
+            font-weight: 425;
+        }
+        @import "https://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+        .rwd-table {
+            margin: 1em 0;
+            min-width: 300px;
+        }
+        .rwd-table tr {
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        .rwd-table th {
+            display: none;
+        }
+        .rwd-table td {
+            display: block;
+        }
+        .rwd-table td:first-child {
+            padding-top: 0.5em;
+        }
+        .rwd-table td:last-child {
+            padding-bottom: 0.5em;
+        }
+        .rwd-table td:before {
+            content: attr(data-th) ": ";
+            font-weight: bold;
+            width: 6.5em;
+            display: inline-block;
+        }
+        @media (min-width: 480px) {
+            .rwd-table td:before {
+                display: none;
+            }
+        }
+        .rwd-table th,
+        .rwd-table td {
+            text-align: left;
+        }
+        @media (min-width: 480px) {
+            .rwd-table th,
+            .rwd-table td {
+                display: table-cell;
+                padding: 0.25em 0.5em;
+            }
+            .rwd-table th:first-child,
+            .rwd-table td:first-child {
+                padding-left: 0;
+            }
+            .rwd-table th:last-child,
+            .rwd-table td:last-child {
+                padding-right: 0;
+            }
+        }
+
+        h1 {
+            font-weight: normal;
+            letter-spacing: -1px;
+            color: #34495e;
+        }
+
+        .rwd-table {
+            background: #34495e;
+            color: #fff;
+            border-radius: 0.4em;
+            overflow: hidden;
+        }
+        .rwd-table tr {
+            border-color: #46637f;
+        }
+        .rwd-table th,
+        .rwd-table td {
+            margin: 0.5em 1em;
+        }
+        @media (min-width: 480px) {
+            .rwd-table th,
+            .rwd-table td {
+                padding: 1em !important;
+            }
+        }
+        .rwd-table th,
+        .rwd-table td:before {
+            color: #dd5;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h2>Compare</h2>
+
+            <div class="form-group">
+                <span><b>Head</b></span>
+                <input class="form-field" type="text"  value="50" id="head">
+            </div>
+            <br>
+            <div class="form-group">
+                <span><b>Track</b></span>
+                <input class="form-field" type="text"  value="176 79 34 60 92 11 41 114" id="track">
+            </div>
+            <br>
+            <div class="form-group">
+                <span><b>Disk Size</b></span>
+                <input class="form-field" type="text"  value="200" id="disk_size">
+            </div>
+            <br>
+            <center>
+                <span><b style="color:#345F90">Direction (SCAN) : </b></span>
+                <input type="radio" name="direction_scan" id="l_scan" value="left" checked>
+                <label for="l_scan" style="margin-right: 8px">Down</label>
+                <input type="radio" name="direction_scan" id='r_scan' value="right" style="margin-left: 8px">
+                <label for="r_scan">Up</label>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span><b style="color:#345F90;">Direction (C-SCAN) : </b></span>
+                <input type="radio" name="direction_cscan" id="l_cscan" value="left" checked>
+                <label for="l_cscan" style="margin-right: 8px">Down</label>
+                <input type="radio" name="direction_cscan" id='r_cscan' value="right" style="margin-left: 8px">
+                <label for="r_cscan">Up</label>
+            </center>
+    <br>
+            <center>
+                <span><b style="color:#345F90">Direction (LOOK) : </b></span>
+                <input type="radio" name="direction_look" id="l_look" value="left" checked>
+                <label for="l_look" style="margin-right: 8px">Down</label>
+                <input type="radio" name="direction_look" id='r_look' value="right" style="margin-left: 8px">
+                <label for="r_look">Up</label>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span><b style="color:#345F90">Direction (C-LOOK) : </b></span>
+        <input type="radio" name="direction_clook" id="l_clook" value="left" checked>
+        <label for="l_clook" style="margin-right: 8px">Down</label>
+        <input type="radio" name="direction_clook" id='r_clook' value="right" style="margin-left: 8px">
+        <label for="r_clook">Up</label>
+    </center>
+    <br>
+            <center><button class="button-18" role="button" id="analy">Analyse</button></center>
+            <br>
+            <div style="display: flex" id="res"></div>
+
+        </div>
+
+</body>
+<script src="../js/error.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script>
+    $("document").ready(function () {
+        $(".tab-slider--body").hide();
+        $(".tab-slider--body:first").show();
+    });
+
+    $(".tab-slider--nav li").click(function () {
+        $(".tab-slider--body").hide();
+        var activeTab = $(this).attr("rel");
+        $("#" + activeTab).fadeIn();
+        if ($(this).attr("rel") == "tab2") {
+            $('.tab-slider--tabs').addClass('slide');
+        } else {
+            $('.tab-slider--tabs').removeClass('slide');
+        }
+        $(".tab-slider--nav li").removeClass("active");
+        $(this).addClass("active");
+    });
+    //# sourceURL=pen.js
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/MotionPathPlugin.min.js'></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="../js/raw.js"></script>
