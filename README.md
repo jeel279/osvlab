@@ -1,4 +1,4 @@
-Operating System Project
+# Operating System Lab
 
 We have implemented various modules of Disk scheduling algorithms of Operating system from scratch. One can use this for understanding different disk scheduling algorithms and then compare them easily.
 Various algorithms implemented here are:
