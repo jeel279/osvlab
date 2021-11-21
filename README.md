@@ -30,4 +30,4 @@ You can visualize and play with the all 9 sheduling algorithm on this website.
 Jash Dalal | 
 Harshil Patel | 
 Jeel Vachhani | 
-Kushal Gajjar | 
+Kushal Gajjar
