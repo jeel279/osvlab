@@ -200,7 +200,7 @@ function clook(track,head,size,dir){
         otrack.push(tmp[tmp.length-1]);
         seek+=tmp[tmp.length-1]-tmp[0];
         otrack.push(tmp[0]);
-        for (var i = 1; i < st,CSCANart; i++) {
+        for (var i = 1; i < start; i++) {
             seek += tmp[i] - tmp[i - 1];
             otrack.push(tmp[i]);
         }
