@@ -27,7 +27,7 @@ You can visualize and play with the all 9 sheduling algorithm on this website.
 
 ## Contribution from
 
-Jash Dalal
-Harshil Patel
-Jeel Vachhani
-Kushal Gajjar
+Jash Dalal | 
+Harshil Patel | 
+Jeel Vachhani | 
+Kushal Gajjar | 
